@@ -6,7 +6,7 @@ import { IMeals } from "@/Types/Shared/Meals";
 
 const Meals = () => {
   const [arrayMeals, setArrayMeals] = useState<IMeals[]>([]);
-  const { data: serverData, isLoading } = useGetMeals();
+  const { data: serverData, isLoading, isError } = useGetMeals();
   useEffect(() => {
     if (!isLoading) {
       const arrayData: IMeals[] = [];
@@ -27,7 +27,16 @@ const Meals = () => {
   return (
     <Fragment>
       <MealsSummary />
-      <AvailableMeals meals={arrayMeals} />
+      {isError ? (
+        <h2>
+          An error occurred loading the data, Please try again in a few minutes
+        </h2>
+      ) : (
+        <AvailableMeals
+          meals={arrayMeals}
+          isLoading={isLoading}
+        />
+      )}
     </Fragment>
   );
 };

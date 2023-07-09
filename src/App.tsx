@@ -1,5 +1,5 @@
 import { Fragment, useContext } from "react";
-
+import { Player } from "@lottiefiles/react-lottie-player";
 import Header from "@/UI/Layout/Header";
 import Meals from "./UI/Components/Meals/Meals";
 import Cart from "./UI/Components/Cart/Cart";
