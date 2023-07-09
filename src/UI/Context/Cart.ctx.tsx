@@ -87,7 +87,6 @@ export const CartContextProvider = ({ children }: { children: ReactNode }) => {
 
   const addItem = (item: ICartItem) => {
     dispatchCart({ type: "Add_Item", cart: item });
-    console.log(cartState);
   };
   const removeItem = (item: ICartItem) => {
     dispatchCart({ type: "Remove_Item", cart: item });
