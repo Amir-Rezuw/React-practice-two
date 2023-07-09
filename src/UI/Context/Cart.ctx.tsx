@@ -1,36 +1,22 @@
 import { ReactNode, createContext, useReducer } from "react";
+import {
+  ICartItem,
+  ICartPrimaryData,
+  ICartReducerAction,
+  ICtx,
+} from "@/Types/UI/ICartContext";
 
-interface ICartItem {
-  id: string;
-  name: string;
-  amount: number;
-  price: number;
-}
-interface ICtx {
-  items: ICartItem[];
-  totalAmount: number;
-  addItem: (item: ICartItem) => void;
-  removeItem: (item: ICartItem) => void;
-}
-interface ICartReducerAction {
-  type: "Add_Item" | "Remove_Item";
-  cart: ICartItem;
-}
+const defaultCartState = {
+  items: [],
+  totalAmount: 0,
+};
+
 const CartContext = createContext<ICtx>({
   items: [],
   totalAmount: 0,
   addItem: (_item: ICartItem) => {},
   removeItem: (_item: ICartItem) => {},
 });
-interface ICartPrimaryData {
-  items: ICartItem[];
-  totalAmount: number;
-}
-const defaultCartState = {
-  items: [],
-  totalAmount: 0,
-};
-
 const cartReducerFn = (state: ICartPrimaryData, action: ICartReducerAction) => {
   if (action.type === "Add_Item") {
     const existingCartItemIndex = state.items.findIndex(
